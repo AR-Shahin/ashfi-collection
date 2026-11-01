@@ -327,7 +327,7 @@ p { margin: 0 0 1em; }
 .shop-search { display: flex; align-items: center; gap: 10px; border: 1px solid var(--line); border-radius: var(--radius); padding: 0 12px; margin-bottom: 16px; color: var(--muted); background: var(--white); }
 .shop-search:focus-within { border-color: var(--burgundy); }
 .shop-search input { flex: 1; min-width: 0; border: 0; outline: 0; padding: .85rem 0; background: transparent; color: var(--charcoal); }
-.shop-search button { background: none; border: 0; color: var(--muted); display: grid; place-items: center; width: 32px; height: 32px; }
+.shop-search button { background: none; border: 0; color: var(--muted); display: grid; place-items: center; width: 36px; height: 36px; }
 .active-filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; }
 .active-filters:empty { display: none; }
 .tag { display: inline-flex; align-items: center; gap: 6px; padding: 5px 6px 5px 12px; background: var(--cream); border: 1px solid var(--line); border-radius: 999px; font-size: .8125rem; }
@@ -779,3 +779,4 @@ a.stat:hover { border-color: var(--gold); }
 }
 .link-btn { min-height: 40px; }
 .chip-btn { min-height: 38px; }
+[hidden] { display: none !important; }
