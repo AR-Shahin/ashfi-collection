@@ -313,7 +313,7 @@
       header.outerHTML =
         '<header class="site-header" id="siteHeader"><div class="container header__inner">' +
           '<button type="button" class="icon-btn header__menu" data-open-drawer aria-label="Open menu" aria-controls="mobileDrawer" aria-expanded="false">' + icon("menu", 24) + "</button>" +
-          '<a class="logo" href="index.html" aria-label="Ashfi Collection home"><span class="logo__name">Ashfi</span><span class="logo__sub">Collection</span></a>' +
+          '<a class="logo" href="index.html" aria-label="Ashfi Collection home"><img class="logo__img" src="images/brand/logo-horizontal.svg" alt="Ashfi Collection" width="562" height="176"></a>' +
           '<nav class="primary-nav" aria-label="Primary"><ul>' +
             navLink("home", "index.html", "Home") + navLink("shop", "shop.html", "Shop") + navLink("new", "shop.html?filter=new", "New Arrivals") +
             '<li class="has-dropdown"><a class="nav-link" href="index.html#categories" aria-haspopup="true">Categories ' + icon("down", 14) + '</a><ul class="dropdown">' + catItems + "</ul></li>" +
@@ -338,7 +338,7 @@
     drawer.innerHTML =
       '<div class="overlay" data-close-drawer hidden></div>' +
       '<aside class="drawer" id="mobileDrawer" aria-label="Menu" aria-hidden="true" inert>' +
-        '<div class="drawer__head"><a class="logo" href="index.html"><span class="logo__name">Ashfi</span><span class="logo__sub">Collection</span></a>' +
+        '<div class="drawer__head"><a class="logo" href="index.html"><img class="logo__img" src="images/brand/logo-horizontal.svg" alt="Ashfi Collection" width="562" height="176"></a>' +
         '<button type="button" class="icon-btn" data-close-drawer aria-label="Close menu">' + icon("x", 22) + "</button></div>" +
         '<nav aria-label="Mobile"><ul class="drawer__list">' +
           navLink("home", "index.html", "Home") + navLink("shop", "shop.html", "Shop") + navLink("new", "shop.html?filter=new", "New Arrivals") +
@@ -356,7 +356,7 @@
     if (footer) {
       footer.outerHTML =
         '<footer class="site-footer"><div class="container"><div class="footer__grid">' +
-          '<div class="footer__brand"><a class="logo logo--light" href="index.html"><span class="logo__name">Ashfi</span><span class="logo__sub">Collection</span></a>' +
+          '<div class="footer__brand"><a class="logo logo--light" href="index.html"><img class="logo__img" src="images/brand/logo-horizontal-light.svg" alt="Ashfi Collection" width="562" height="176"></a>' +
             '<p class="footer__tag">' + esc(D.brand.tagline) + '</p><p class="footer__bn" lang="bn">' + esc(D.brand.taglineBn) + "</p>" +
             "<p>Elegant, comfortable and thoughtfully finished clothing for the modern Bangladeshi woman.</p>" +
             '<div class="social"><a href="' + D.brand.facebook + '" target="_blank" rel="noopener" aria-label="Ashfi Collection on Facebook">' + icon("facebook", 20) + "</a>" +

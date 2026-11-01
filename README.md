@@ -12,7 +12,22 @@ js/store.js            cart + wishlist (localStorage), money/discount helpers
 js/components.js       header, footer, drawer, search, bottom nav, product card, quick view, toasts
 js/<page>.js           page-specific logic
 images/                openly licensed stand-in photos (JPG) + favicon + OG cover
+images/brand/          logos and Facebook graphics
 ```
+
+## Brand assets
+Everything is in `images/brand/`. Logo lettering is converted to shapes, so no fonts are needed to open the files.
+
+| File | Use |
+| --- | --- |
+| `logo-horizontal.svg` / `.png` | Website header, invoices, light backgrounds |
+| `logo-horizontal-light.svg` / `.png` | Footer and dark backgrounds |
+| `logo-stacked.svg` / `.png` (and `-light`) | Packaging, tags, square layouts |
+| `monogram.svg` / `.png` | Watermarks, stamps, stickers |
+| `facebook-profile.png` | Facebook profile picture, 1080×1080. Stays inside Facebook's circle crop |
+| `facebook-cover.png` | Facebook cover, 1640×924. Key content sits in the central 1640×624 band so it survives desktop cropping |
+
+Colours: burgundy `#722F45`, cream `#F3EBDD`, gold `#C5A46D`, dark gold `#9A7B45`. Fonts: Playfair Display and Inter, with Pinyon Script for the tagline.
 
 ## Before launch – replace these placeholders
 1. **Product photos** – edit `images` in `js/data.js` (3:4 JPG/WebP, ~900×1200). The files in `images/products`, `images/categories`, `images/hero.jpg` and `images/story.jpg` are Wikimedia Commons photos of similar garments, not your stock. Each is credited in `photoCredits` (`js/data.js`), shown on `policy.html#credits`; keep that list in sync as you swap in your own photos.
