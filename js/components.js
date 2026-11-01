@@ -366,7 +366,7 @@
             '<li><a href="shop.html?filter=best">Best Sellers</a></li><li><a href="about.html">About Us</a></li></ul></nav>' +
           '<nav aria-label="Customer support"><h2 class="footer__h">Customer Support</h2><ul>' +
             '<li><a href="contact.html">Contact Us</a></li><li><a href="contact.html#faq">FAQs</a></li><li><a href="policy.html#delivery">Delivery Policy</a></li>' +
-            '<li><a href="policy.html#returns">Return &amp; Exchange</a></li><li><a href="policy.html#privacy">Privacy Policy</a></li>' +
+            '<li><a href="policy.html#returns">Return &amp; Exchange</a></li><li><a href="policy.html#privacy">Privacy Policy</a></li><li><a href="policy.html#credits">Photo Credits</a></li>' +
             '<li><a href="wishlist.html">My Wishlist</a></li></ul></nav>' +
           '<div><h2 class="footer__h">Get in Touch</h2><ul class="footer__contact">' +
             "<li>" + icon("pin", 18) + "<span>" + esc(D.brand.address) + "</span></li>" +

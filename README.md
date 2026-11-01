@@ -11,11 +11,11 @@ js/data.js             ALL content: brand info, categories, products, reviews, d
 js/store.js            cart + wishlist (localStorage), money/discount helpers
 js/components.js       header, footer, drawer, search, bottom nav, product card, quick view, toasts
 js/<page>.js           page-specific logic
-images/                illustrated placeholders (SVG) + favicon + OG cover
+images/                openly licensed stand-in photos (JPG) + favicon + OG cover
 ```
 
 ## Before launch – replace these placeholders
-1. **Product photos** – edit `images` in `js/data.js` (3:4 JPG/WebP, ~900×1200). The files in `images/products` and `images/categories` are illustrations, not photography.
+1. **Product photos** – edit `images` in `js/data.js` (3:4 JPG/WebP, ~900×1200). The files in `images/products`, `images/categories`, `images/hero.jpg` and `images/story.jpg` are Wikimedia Commons photos of similar garments, not your stock. Each is credited in `photoCredits` (`js/data.js`), shown on `policy.html#credits`; keep that list in sync as you swap in your own photos.
 2. **Domain** – every page's `<meta property="og:image">` / `og:url` uses `https://ashficollection.com`. Replace with the real domain. Facebook needs `images/og-cover.png` (included) at that absolute URL.
 3. **Contact details, Facebook and Instagram links** – `brand` in `js/data.js`.
 4. **Testimonials, "About" statistics and policy text** – sample/demo content.
