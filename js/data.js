@@ -11,6 +11,7 @@
 window.ASHFI = {
   brand: {
     name: "Ashfi Collection",
+    url: "https://ashficollection.com",     // TODO: replace with the live domain
     tagline: "Elegance in Every Thread.",
     taglineBn: "প্রতিটি পোশাকে আভিজাত্যের ছোঁয়া।",
     phone: "+880 1700-000000",
@@ -33,6 +34,14 @@ window.ASHFI = {
     outsideDhaka: 130,
     freeOver: 5000
   },
+
+  /* DEMO coupons. type: percent | flat | shipping. Anyone can read this file, so the
+     server must validate real codes at checkout. Omit `expires` for no end date. */
+  coupons: [
+    { code: "WELCOME10", type: "percent", value: 10, maxDiscount: 500, minSpend: 1500, expires: "2027-06-30", title: "10% off your order", detail: "Up to ৳500 off on orders of ৳1,500 or more." },
+    { code: "FLAT300", type: "flat", value: 300, minSpend: 4000, expires: "2027-06-30", title: "৳300 off", detail: "On orders of ৳4,000 or more." },
+    { code: "FREESHIP", type: "shipping", value: 0, minSpend: 2000, expires: "2027-06-30", title: "Free delivery", detail: "Anywhere in Bangladesh on orders of ৳2,000 or more." }
+  ],
 
   /* Product ids shown in the homepage "Featured Products" grid, in order. */
   featuredIds: [

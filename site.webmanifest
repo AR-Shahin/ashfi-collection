@@ -1,0 +1,21 @@
+{
+  "name": "Ashfi Collection",
+  "short_name": "Ashfi",
+  "description": "Elegant women's fashion in Bangladesh.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#FAF6EE",
+  "theme_color": "#722F45",
+  "icons": [
+    {
+      "src": "images/brand/monogram.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    },
+    {
+      "src": "images/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

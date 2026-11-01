@@ -15,6 +15,22 @@
     if (og) og.setAttribute("content", og.getAttribute("content").replace(/\/images\/og-cover\.png$/, "/" + p.images[0]));
     var ogurl = document.querySelector('meta[property="og:url"]');
     if (ogurl) ogurl.setAttribute("content", ogurl.getAttribute("content").replace(/product\.html.*$/, "product.html?id=" + p.id));
+    U.setCanonical("product.html?id=" + encodeURIComponent(p.id));
+    var base = D.brand.url + "/", url = base + "product.html?id=" + encodeURIComponent(p.id);
+    U.jsonLd({
+      "@context": "https://schema.org", "@type": "Product", name: p.name, sku: p.id, description: p.description,
+      image: p.images.map(function (src) { return base + src; }), category: cat ? cat.name : undefined,
+      brand: { "@type": "Brand", name: D.brand.name },
+      offers: { "@type": "Offer", url: url, price: S.unitPrice(p), priceCurrency: "BDT", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition" }
+    });
+    U.jsonLd({
+      "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: base },
+        { "@type": "ListItem", position: 2, name: "Shop", item: base + "shop.html" },
+        { "@type": "ListItem", position: 3, name: cat ? cat.name : "Products", item: base + "shop.html?category=" + p.category },
+        { "@type": "ListItem", position: 4, name: p.name, item: url }
+      ]
+    });
     document.getElementById("pdpCrumbs").innerHTML =
       '<li><a href="index.html">Home</a></li><li><a href="shop.html">Shop</a></li>' +
       '<li><a href="shop.html?category=' + p.category + '">' + esc(cat ? cat.name : "") + "</a></li>" +
@@ -41,6 +57,7 @@
         "<h1>" + esc(p.name) + "</h1>" + U.priceBlock(p, "price--lg") +
         '<p class="pdp__short">' + esc(p.description) + "</p>" +
         U.optionsMarkup(p, "pdp") +
+        (p.sizes.length > 1 ? '<p class="pdp__sizeguide"><a class="link-arrow" href="size-guide.html">Size guide ' + U.icon("right", 16) + "</a></p>" : "") +
         '<div class="opt"><span class="opt" style="display:block;margin:0 0 10px;font-size:.8125rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">Quantity</span>' + U.qtyMarkup("pdpQty") + "</div>" +
         '<div class="pdp__buy"><button type="button" class="btn btn--primary" id="pdpAdd">Add to Cart</button>' +
           '<button type="button" class="btn btn--outline" id="pdpBuy">Buy Now</button></div>' +

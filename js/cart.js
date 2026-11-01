@@ -27,7 +27,7 @@
         '<a class="btn btn--primary" href="shop.html">Start Shopping</a></div>';
       return;
     }
-    var sub = S.cartSubtotal(), free = D.delivery.freeOver, left = Math.max(0, free - sub);
+    var t = S.totals(), sub = t.subtotal, free = D.delivery.freeOver, left = Math.max(0, free - sub);
     var pct = Math.min(100, Math.round(sub / free * 100));
     root.innerHTML = '<div class="cart"><section aria-label="Cart items"><ul class="cart-list">' + cart.map(line).join("") + "</ul>" +
       '<p style="margin-top:20px"><a class="link-arrow" href="shop.html">' + U.icon("left", 16) + " Continue shopping</a></p></section>" +
@@ -35,8 +35,10 @@
         '<div class="progress"><div class="progress__bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + pct + '" aria-label="Progress to free delivery"><i style="width:' + pct + '%"></i></div>' +
           "<p>" + (left ? "Add " + S.money(left) + " more for <strong>free delivery</strong>." : "🎉 You’ve unlocked <strong>free delivery</strong>!") + "</p></div>" +
         '<div class="sum-row"><span>Subtotal (' + S.cartCount() + " item" + (S.cartCount() === 1 ? "" : "s") + ")</span><span>" + S.money(sub) + "</span></div>" +
-        '<div class="sum-row"><span>Delivery</span><span>Calculated at checkout</span></div>' +
-        '<div class="sum-row sum-row--total"><span>Total</span><span>' + S.money(sub) + "</span></div>" +
+        (t.discount ? '<div class="sum-row sum-row--save"><span>Coupon discount</span><span>−' + S.money(t.discount) + "</span></div>" : "") +
+        '<div class="sum-row"><span>Delivery</span><span>' + (t.coupon && t.coupon.type === "shipping" && !t.couponMessage ? "Free" : "Calculated at checkout") + "</span></div>" +
+        '<div class="sum-row sum-row--total"><span>Total</span><span>' + S.money(t.total) + "</span></div>" +
+        '<div class="coupon-box">' + U.couponMarkup(t) + "</div>" +
         '<p class="sum-note">Delivery: ' + S.money(D.delivery.insideDhaka) + " inside Dhaka, " + S.money(D.delivery.outsideDhaka) + " outside Dhaka.</p>" +
         '<a class="btn btn--primary btn--block" href="checkout.html">Proceed to Checkout</a></aside></div>';
     U.hydrate(root);
@@ -45,6 +47,7 @@
   function init() {
     render();
     var root = document.getElementById("cartRoot");
+    U.bindCoupon(root);
     root.addEventListener("click", function (e) {
       var rm = e.target.closest("[data-remove]");
       if (rm) { S.removeLine(rm.getAttribute("data-remove")); U.toast("Item removed from cart"); return; }

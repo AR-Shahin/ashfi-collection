@@ -41,7 +41,14 @@
     cash: '<rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/>',
     chat: '<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>',
     clock: '<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
-    info: '<circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>'
+    info: '<circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>',
+    user: '<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+    logout: '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/>',
+    box: '<path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/>',
+    tag: '<path d="M12.59 2.59A2 2 0 0 0 11.17 2H4a2 2 0 0 0-2 2v7.17a2 2 0 0 0 .59 1.42l8.7 8.7a2.43 2.43 0 0 0 3.42 0l6.58-6.58a2.43 2.43 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5"/>',
+    lock: '<rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+    edit: '<path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>',
+    copy: '<rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2"/>'
   };
 
   function icon(name, size, cls) {
@@ -73,6 +80,58 @@
       el.classList.remove("is-in");
       setTimeout(function () { el.remove(); }, 300);
     }, opts.duration || 3200);
+  }
+
+  /* ---------------------------------------------------------------- forms */
+  /** Shows or clears the message in the #<id>Err element that belongs to a field. */
+  function fieldError(field, msg) {
+    var el = document.getElementById(field.id + "Err");
+    field.setAttribute("aria-invalid", msg ? "true" : "false");
+    if (el) el.textContent = msg || "";
+    return !msg;
+  }
+
+  function couponMarkup(t) {
+    if (t.coupon) {
+      return '<div class="coupon__on">' + icon("tag", 18) + "<span><strong>" + esc(t.coupon.code) + "</strong> " + esc(t.coupon.title) + "</span>" +
+        '<button type="button" class="link-btn" data-coupon-remove aria-label="Remove coupon ' + esc(t.coupon.code) + '">Remove</button></div>' +
+        (t.couponMessage ? '<p class="coupon__msg is-error" role="status">' + esc(t.couponMessage) + "</p>" : "");
+    }
+    return '<form class="coupon" data-coupon-form novalidate><label class="sr-only" for="couponCode">Coupon code</label>' +
+      '<input id="couponCode" name="code" placeholder="Coupon code" autocomplete="off" autocapitalize="characters" spellcheck="false">' +
+      '<button type="submit" class="btn btn--outline btn--sm">Apply</button></form>' +
+      '<p class="coupon__msg" role="status"></p><p class="coupon__link"><a href="offers.html">View available offers</a></p>';
+  }
+
+  /** root keeps working across re-renders because it listens from outside the coupon box. */
+  function bindCoupon(root) {
+    root.addEventListener("submit", function (e) {
+      if (!e.target.matches("[data-coupon-form]")) return;
+      e.preventDefault();
+      var input = e.target.elements.code, msg = root.querySelector(".coupon__msg");
+      if (!input.value.trim()) { msg.textContent = "Enter a coupon code."; msg.classList.add("is-error"); input.focus(); return; }
+      var res = S.applyCoupon(input.value);
+      if (res.ok) { toast(res.message); return; }
+      msg.textContent = res.message; msg.classList.add("is-error");
+    });
+    root.addEventListener("click", function (e) {
+      if (e.target.closest("[data-coupon-remove]")) { S.removeCoupon(); toast("Coupon removed"); }
+    });
+  }
+
+  /* ------------------------------------------------------------------ SEO */
+  function setCanonical(path) {
+    var url = D.brand.url + "/" + path, link = document.querySelector('link[rel="canonical"]'), og = document.querySelector('meta[property="og:url"]');
+    if (!link) { link = document.createElement("link"); link.rel = "canonical"; document.head.appendChild(link); }
+    link.href = url;
+    if (og) og.setAttribute("content", url);
+  }
+
+  function jsonLd(data) {
+    var el = document.createElement("script");
+    el.type = "application/ld+json";
+    el.textContent = JSON.stringify(data).replace(/</g, "\\u003c");
+    document.head.appendChild(el);
   }
 
   /* ----------------------------------------------------- image skeletons */
@@ -283,6 +342,7 @@
     }
     if (path === "about.html") return "about";
     if (path === "contact.html") return "contact";
+    if (/^(account|login|register)/.test(path)) return "account";
     return "";
   }
 
@@ -292,6 +352,8 @@
     var navLink = function (key, href, label) {
       return '<li><a class="nav-link" href="' + href + '"' + (cur === key ? ' aria-current="page"' : "") + ">" + label + "</a></li>";
     };
+    var signedIn = !!window.Auth.current();
+    var accountHref = signedIn ? "account.html" : "login.html";
     var catItems = cats.map(function (c) { return '<li><a href="shop.html?category=' + c.slug + '">' + esc(c.name) + "</a></li>"; }).join("");
 
     var ann = document.getElementById("site-announcement");
@@ -321,6 +383,7 @@
           "</ul></nav>" +
           '<div class="header__actions">' +
             '<button type="button" class="icon-btn" data-search-toggle aria-label="Search products" aria-expanded="false" aria-controls="searchPanel">' + icon("search", 22) + "</button>" +
+            '<a class="icon-btn header__account' + (signedIn ? " is-on" : "") + '" href="' + accountHref + '" aria-label="' + (signedIn ? "My account" : "Log in") + '">' + icon("user", 22) + "</a>" +
             '<a class="icon-btn header__wish" href="wishlist.html" aria-label="Wishlist">' + icon("heart", 22) + '<span class="count-badge" data-wish-count hidden>0</span></a>' +
             '<a class="icon-btn" href="cart.html" aria-label="Shopping cart">' + icon("bag", 22) + '<span class="count-badge" data-cart-count hidden>0</span></a>' +
           "</div></div>" +
@@ -345,7 +408,8 @@
           navLink("best", "shop.html?filter=best", "Best Sellers") +
         "</ul>" +
         '<p class="drawer__label" id="drawerCats">Categories</p><ul class="drawer__list drawer__list--sub" aria-labelledby="drawerCats">' + catDrawer + "</ul>" +
-        '<ul class="drawer__list">' + navLink("about", "about.html", "About Us") + navLink("contact", "contact.html", "Contact") + "</ul></nav>" +
+        '<ul class="drawer__list">' + navLink("account", accountHref, signedIn ? "My Account" : "Log In / Register") + navLink("", "wishlist.html", "Wishlist") + navLink("", "track-order.html", "Track Order") + navLink("", "offers.html", "Offers") +
+          navLink("about", "about.html", "About Us") + navLink("contact", "contact.html", "Contact") + "</ul></nav>" +
         '<div class="drawer__foot"><a href="tel:' + D.brand.phone.replace(/[^+\d]/g, "") + '">' + icon("phone", 18) + " " + esc(D.brand.phone) + "</a>" +
         '<div class="social"><a href="' + D.brand.facebook + '" target="_blank" rel="noopener" aria-label="Facebook">' + icon("facebook", 20) + "</a>" +
         '<a href="' + D.brand.instagram + '" target="_blank" rel="noopener" aria-label="Instagram">' + icon("instagram", 20) + "</a></div></div>" +
@@ -363,11 +427,10 @@
             '<a href="' + D.brand.instagram + '" target="_blank" rel="noopener" aria-label="Ashfi Collection on Instagram">' + icon("instagram", 20) + "</a></div></div>" +
           '<nav aria-label="Quick links"><h2 class="footer__h">Quick Links</h2><ul>' +
             '<li><a href="index.html">Home</a></li><li><a href="shop.html">Shop</a></li><li><a href="shop.html?filter=new">New Arrivals</a></li>' +
-            '<li><a href="shop.html?filter=best">Best Sellers</a></li><li><a href="about.html">About Us</a></li></ul></nav>' +
+            '<li><a href="shop.html?filter=best">Best Sellers</a></li><li><a href="offers.html">Offers</a></li><li><a href="size-guide.html">Size Guide</a></li><li><a href="about.html">About Us</a></li></ul></nav>' +
           '<nav aria-label="Customer support"><h2 class="footer__h">Customer Support</h2><ul>' +
-            '<li><a href="contact.html">Contact Us</a></li><li><a href="contact.html#faq">FAQs</a></li><li><a href="policy.html#delivery">Delivery Policy</a></li>' +
-            '<li><a href="policy.html#returns">Return &amp; Exchange</a></li><li><a href="policy.html#privacy">Privacy Policy</a></li><li><a href="policy.html#credits">Photo Credits</a></li>' +
-            '<li><a href="wishlist.html">My Wishlist</a></li></ul></nav>' +
+            '<li><a href="' + accountHref + '">My Account</a></li><li><a href="track-order.html">Track Order</a></li><li><a href="contact.html">Contact Us</a></li><li><a href="faq.html">FAQs</a></li><li><a href="policy.html#delivery">Delivery Policy</a></li>' +
+            '<li><a href="policy.html#returns">Return &amp; Exchange</a></li><li><a href="policy.html#privacy">Privacy Policy</a></li><li><a href="terms.html">Terms &amp; Conditions</a></li><li><a href="policy.html#credits">Photo Credits</a></li></ul></nav>' +
           '<div><h2 class="footer__h">Get in Touch</h2><ul class="footer__contact">' +
             "<li>" + icon("pin", 18) + "<span>" + esc(D.brand.address) + "</span></li>" +
             '<li>' + icon("phone", 18) + '<a href="tel:' + D.brand.phone.replace(/[^+\d]/g, "") + '">' + esc(D.brand.phone) + "</a></li>" +
@@ -386,7 +449,7 @@
     };
     bn.innerHTML = item("index.html", "home", "Home", "home") + item("shop.html", "sliders", "Shop", "shop") +
       '<button type="button" data-open-drawer aria-controls="mobileDrawer">' + icon("grid", 22) + "<span>Categories</span></button>" +
-      '<a href="wishlist.html"' + (location.pathname.indexOf("wishlist") > -1 ? ' aria-current="page"' : "") + ">" + icon("heart", 22) + '<span>Wishlist</span><i class="count-badge" data-wish-count hidden>0</i></a>' +
+      item(accountHref, "user", "Account", "account") +
       '<a href="cart.html"' + (location.pathname.indexOf("cart") > -1 ? ' aria-current="page"' : "") + ">" + icon("bag", 22) + '<span>Cart</span><i class="count-badge" data-cart-count hidden>0</i></a>';
     document.body.appendChild(bn);
 
@@ -448,6 +511,14 @@
       if (e.target.closest("[data-close-drawer]")) { setDrawer(false); return; }
       if (e.target.closest("[data-search-toggle]")) { setSearch(document.getElementById("searchPanel").hidden); return; }
       if (e.target.closest("#mobileDrawer a")) setDrawer(false);
+      var pw = e.target.closest("[data-pw-toggle]");
+      if (pw) {
+        var field = document.getElementById(pw.getAttribute("data-pw-toggle")), show = field.type === "password";
+        field.type = show ? "text" : "password";
+        pw.textContent = show ? "Hide" : "Show";
+        pw.setAttribute("aria-pressed", show ? "true" : "false");
+        return;
+      }
       onAction(e);
     });
     document.addEventListener("keydown", function (e) {
@@ -485,7 +556,8 @@
   window.UI = {
     icon: icon, stars: stars, toast: toast, hydrate: hydrate, productCard: productCard, renderProducts: renderProducts,
     priceBlock: priceBlock, optionsMarkup: optionsMarkup, qtyMarkup: qtyMarkup, bindOptions: bindOptions, readSelection: readSelection,
-    openQuickView: openQuickView
+    openQuickView: openQuickView, fieldError: fieldError, couponMarkup: couponMarkup, bindCoupon: bindCoupon,
+    setCanonical: setCanonical, jsonLd: jsonLd
   };
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();

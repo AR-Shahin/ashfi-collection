@@ -193,5 +193,17 @@
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && $("filters").classList.contains("is-open")) setDrawer(false); });
   }
 
+  /* Filtered views share one canonical URL each; searches stay out of the index. */
+  function shopSeo() {
+    var q = new URLSearchParams(location.search), cat = S.getCategory(q.get("category"));
+    var path = "shop.html" + (cat ? "?category=" + cat.slug : q.get("filter") ? "?filter=" + encodeURIComponent(q.get("filter")) : "");
+    U.setCanonical(path);
+    if (cat) {
+      var desc = "Shop " + cat.name + " at Ashfi Collection: " + cat.blurb.toLowerCase() + " with nationwide delivery and Cash on Delivery in Bangladesh.";
+      ['meta[name="description"]', 'meta[property="og:description"]'].forEach(function (sel) { document.querySelector(sel).setAttribute("content", desc); });
+    }
+    if (q.get("q")) document.querySelector('meta[name="robots"]').setAttribute("content", "noindex,follow");
+  }
+  document.addEventListener("ashfi:ready", shopSeo);
   document.addEventListener("ashfi:ready", init);
 })();
