@@ -389,7 +389,7 @@
           "</div></div>" +
           '<div class="search-panel" id="searchPanel" hidden><div class="container">' +
             '<form class="search-form" action="shop.html" method="get" role="search">' + icon("search", 20) +
-              '<input type="search" name="q" id="searchInput" placeholder="Search kurti, saree, orna…" autocomplete="off" aria-label="Search products">' +
+              '<input type="search" name="q" id="searchInput" placeholder="Search products…" autocomplete="off" aria-label="Search products">' +
               '<button type="submit" class="btn btn--primary btn--sm">Search</button>' +
               '<button type="button" class="icon-btn" data-search-toggle aria-label="Close search">' + icon("x", 20) + "</button></form>" +
             '<ul class="search-results" id="searchResults" aria-live="polite"></ul>' +

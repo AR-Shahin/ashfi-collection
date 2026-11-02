@@ -194,5 +194,8 @@
     if (page === "account-addresses") addressesPage();
     if (page === "account-profile") profilePage(user);
     U.hydrate(root);
+    // on phones the menu scrolls sideways; bring the current section into view
+    var on = document.querySelector('.account__nav [aria-current="page"]');
+    if (on) { var list = on.closest("ul"); list.scrollLeft += on.getBoundingClientRect().left - list.getBoundingClientRect().left; }
   });
 })();

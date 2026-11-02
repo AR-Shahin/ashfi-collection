@@ -552,7 +552,7 @@ dialog.qv::backdrop { background: rgba(41, 35, 35, .6); }
 .contact-card p { margin: 0; font-weight: 500; }
 .contact-card a:hover { color: var(--burgundy); }
 .faq { max-width: 760px; margin: 0 auto; }
-.error-page { text-align: center; padding: 72px 0 96px; }
+.error-page { text-align: center; padding-block: 72px 96px; }
 .error-page__num { font-family: var(--font-head); font-size: clamp(6rem, 22vw, 11rem); line-height: 1; color: var(--burgundy); margin: 0; position: relative; display: inline-block; }
 .error-page__num::after { content: ""; position: absolute; left: 10%; right: 10%; bottom: 8%; height: 1px; background: var(--gold); }
 
@@ -651,7 +651,7 @@ dialog.qv::backdrop { background: rgba(41, 35, 35, .6); }
   .to-top { bottom: 24px; right: 24px; }
 }
 @media (max-width: 767px) {
-  body { padding-bottom: calc(58px + env(safe-area-inset-bottom)); }
+  body { padding-bottom: calc(59px + env(safe-area-inset-bottom)); }
 }
 
 @media (min-width: 992px) and (max-width: 1099px) {
@@ -861,3 +861,30 @@ a.stat:hover { border-color: var(--gold); }
   .hero-tab__label { display: block; }
 }
 @media (prefers-reduced-motion: reduce) { .hero-slide__cta .btn--light::after, .hero__ring { display: none; } }
+@media (max-width: 991px) {
+  .select { font-size: 1rem; }
+  .prose .table-wrap table { min-width: 0; width: 100%; }
+  .prose th, .prose td { padding: 8px 7px; font-size: .875rem; }
+  .link-arrow { min-height: 36px; }
+  .footer__contact a { display: inline-block; padding-block: 6px; }
+  .product-card__name a { display: block; padding-block: 7px; }
+  .mini-line strong a { display: block; padding-block: 8px; }
+  .badge { font-size: .75rem; letter-spacing: .06em; padding: 3px 7px; }
+  .product-card__cat, .cat-card__go { font-size: .75rem; letter-spacing: .1em; }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .hero-slide__copy { max-width: 440px; }
+}
+@media (max-height: 480px) and (orientation: landscape) {
+  .hero { height: 370px; }
+  .hero-slide::after, .hero-slide[data-align]::after { background: rgba(38, 12, 22, .66); }
+  .hero-slide__copy { max-width: 620px; }
+  .hero-slide__inner { align-items: center; padding-bottom: 56px; }
+  .hero-slide__motto { margin-bottom: 4px; font-size: 1.5rem; }
+  .hero-slide__title { font-size: 2.1rem; margin-bottom: .25em; }
+  .hero-slide__desc { margin-bottom: .8em; font-size: .9rem; }
+  .hero-slide__cta .btn { min-height: 42px; padding-block: .6rem; }
+  .hero-tab { min-height: 40px; }
+  .hero-tab__label { display: none; }
+  .hero__controls { bottom: 6px; }
+}
