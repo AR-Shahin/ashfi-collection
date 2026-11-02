@@ -56,7 +56,7 @@ window.ASHFI = {
      The first slide is also written in index.html so it works without JavaScript. */
   heroSlides: [
     {
-      id: "signature", type: "video", duration: 5000, transition: "curtain", align: "left",
+      id: "signature", type: "video", duration: 7000, transition: "curtain", align: "left",
       motto: "Elegance in Every Thread",
       title: "Discover Your Perfect Style",
       description: "Explore our exclusive collection of elegant outfits, designed to make every moment special.",
@@ -66,7 +66,7 @@ window.ASHFI = {
       secondary: { label: "Explore Collection", href: "#categories" }
     },
     {
-      id: "sarees", type: "image", duration: 5000, transition: "iris", align: "left",
+      id: "sarees", type: "image", duration: 7000, transition: "iris", align: "left",
       motto: "প্রতিটি পোশাকে আভিজাত্যের ছোঁয়া।", mottoLang: "bn",
       title: "Sarees Made for Celebration",
       description: "Banarasi, jamdani and party sarees, chosen for the moments you want to remember.",
@@ -75,7 +75,7 @@ window.ASHFI = {
       secondary: { label: "New Arrivals", href: "shop.html?filter=new" }
     },
     {
-      id: "offers", type: "image", duration: 5000, transition: "diagonal", align: "center",
+      id: "offers", type: "image", duration: 7000, transition: "diagonal", align: "center",
       motto: "Elegance in Every Thread",
       title: "Offers on Your Favourite Pieces",
       description: "See the latest coupons and sale picks, with Cash on Delivery across Bangladesh.",
@@ -84,7 +84,7 @@ window.ASHFI = {
       secondary: { label: "Browse the Shop", href: "shop.html" }
     },
     {
-      id: "orna", type: "image", duration: 5000, transition: "curtain", align: "right",
+      id: "orna", type: "image", duration: 7000, transition: "curtain", align: "right",
       motto: "Elegance in Every Thread",
       title: "Finish the Look with Orna",
       description: "Light, colourful ornas and dupattas to complete every outfit.",

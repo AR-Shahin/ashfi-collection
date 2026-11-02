@@ -25,7 +25,7 @@
 
   function slideHtml(s) {
     var video = s.video ? ' data-video="' + esc(s.video.lg) + '" data-video-sm="' + esc(s.video.sm) + '"' : "";
-    return '<article class="hero-slide" data-align="' + esc(s.align || "left") + '" data-fx="' + esc(s.transition || "curtain") + '" data-duration="' + (+s.duration || 5000) + '"' + video + ">" +
+    return '<article class="hero-slide" data-align="' + esc(s.align || "left") + '" data-fx="' + esc(s.transition || "curtain") + '" data-duration="' + (+s.duration || 7000) + '"' + video + ">" +
       '<div class="hero-slide__media">' + picture(s) + "</div>" +
       '<div class="container hero-slide__inner"><div class="hero-slide__copy">' +
         '<p class="hero-slide__motto"' + (s.mottoLang ? ' lang="' + esc(s.mottoLang) + '"' : "") + ">" + esc(s.motto) + "</p>" +
@@ -126,7 +126,7 @@
   function markTabs() {
     // the next transition takes this long to show its slide, so it comes out of the wait
     var lead = SWAP[slides[(current + 1) % slides.length].dataset.fx] || 0;
-    root.style.setProperty("--dur", ((+slides[current].dataset.duration || 5000) - lead) + "ms");
+    root.style.setProperty("--dur", ((+slides[current].dataset.duration || 7000) - lead) + "ms");
     tabs.forEach(function (t, i) {
       t.classList.toggle("is-active", i === current);
       t.classList.toggle("is-done", i < current);
