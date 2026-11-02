@@ -49,6 +49,51 @@ window.ASHFI = {
     "emerald-embroidered-kurti", "teal-coord-palazzo-set", "sage-cotton-three-piece", "embroidered-georgette-orna"
   ],
 
+  /* Homepage slider. Each slide: motto, title, description, two buttons, and an image set
+     (lg 1920x1000, md 1200x900, sm 750x1100). Add `video` (lg landscape, sm portrait MP4) to
+     play it over the image, which then acts as the poster. `transition` is curtain, iris or
+     diagonal; `align` is left, center or right; `duration` is in ms.
+     The first slide is also written in index.html so it works without JavaScript. */
+  heroSlides: [
+    {
+      id: "signature", type: "video", duration: 9000, transition: "curtain", align: "left",
+      motto: "Elegance in Every Thread",
+      title: "Discover Your Perfect Style",
+      description: "Explore our exclusive collection of elegant outfits, designed to make every moment special.",
+      image: { lg: "images/hero/slide-1-lg.webp", md: "images/hero/slide-1-md.webp", sm: "images/hero/slide-1-sm.webp", alt: "Close-up of handwoven jamdani fabric with a red motif" },
+      video: { lg: "images/hero/slide-1-lg.mp4", sm: "images/hero/slide-1-sm.mp4" },
+      primary: { label: "Shop Now", href: "shop.html" },
+      secondary: { label: "Explore Collection", href: "#categories" }
+    },
+    {
+      id: "sarees", type: "image", duration: 7000, transition: "iris", align: "left",
+      motto: "প্রতিটি পোশাকে আভিজাত্যের ছোঁয়া।", mottoLang: "bn",
+      title: "Sarees Made for Celebration",
+      description: "Banarasi, jamdani and party sarees, chosen for the moments you want to remember.",
+      image: { lg: "images/hero/slide-2-lg.webp", md: "images/hero/slide-2-md.webp", sm: "images/hero/slide-2-sm.webp", alt: "Silk sarees with gold borders displayed on mannequins" },
+      primary: { label: "Shop Sarees", href: "shop.html?category=saree" },
+      secondary: { label: "New Arrivals", href: "shop.html?filter=new" }
+    },
+    {
+      id: "offers", type: "image", duration: 7000, transition: "diagonal", align: "center",
+      motto: "Elegance in Every Thread",
+      title: "Offers on Your Favourite Pieces",
+      description: "See the latest coupons and sale picks, with Cash on Delivery across Bangladesh.",
+      image: { lg: "images/hero/slide-3-lg.webp", md: "images/hero/slide-3-md.webp", sm: "images/hero/slide-3-sm.webp", alt: "Pink bandhani dupatta in soft folds" },
+      primary: { label: "View Offers", href: "offers.html" },
+      secondary: { label: "Browse the Shop", href: "shop.html" }
+    },
+    {
+      id: "orna", type: "image", duration: 7000, transition: "curtain", align: "right",
+      motto: "Elegance in Every Thread",
+      title: "Finish the Look with Orna",
+      description: "Light, colourful ornas and dupattas to complete every outfit.",
+      image: { lg: "images/hero/slide-4-lg.webp", md: "images/hero/slide-4-md.webp", sm: "images/hero/slide-4-sm.webp", alt: "Blue bandhani dupatta with white and yellow dots" },
+      primary: { label: "Shop Orna", href: "shop.html?category=orna" },
+      secondary: { label: "Our Story", href: "about.html" }
+    }
+  ],
+
   categories: [
     { slug: "kurti",      name: "Kurti",        image: "images/categories/kurti.jpg",        blurb: "Everyday elegance" },
     { slug: "two-piece",   name: "Two Piece",    image: "images/categories/two-piece.jpg",    blurb: "Effortless co-ords" },
@@ -221,6 +266,7 @@ window.ASHFI = {
 
   /* Required by the photo licences. Rendered in the Photo Credits section of policy.html. */
   photoCredits: [
+    {"title": "Bandhani Dupatta (5788125979)", "author": "goblinbox_(queen_of_ad_hoc_bento)", "license": "CC BY 2.0", "licenseUrl": "https://creativecommons.org/licenses/by/2.0", "url": "https://commons.wikimedia.org/wiki/File:Bandhani_Dupatta_(5788125979).jpg", "usedFor": "Homepage slider"},
     {"title": "In my salwar suit", "author": "Linda", "license": "CC BY 2.0", "licenseUrl": "https://creativecommons.org/licenses/by/2.0", "url": "https://commons.wikimedia.org/wiki/File:In_my_salwar_suit.jpg", "usedFor": "Sage Cotton Three Piece"},
     {"title": "Shalwar kameez (1710604)", "author": "AddictionBazaar", "license": "CC0", "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en", "url": "https://commons.wikimedia.org/wiki/File:Shalwar_kameez_(1710604).jpg", "usedFor": "Mustard Handloom Kurti"},
     {"title": "Shalwar kameez (1710606)", "author": "AddictionBazaar", "license": "CC0", "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en", "url": "https://commons.wikimedia.org/wiki/File:Shalwar_kameez_(1710606).jpg", "usedFor": "Rosewood Chikankari Kurti"},
@@ -228,7 +274,7 @@ window.ASHFI = {
     {"title": "Shawl, Varanasi, Uttar Pradesh, India, 20th century, silk, gold thread…", "author": "Daderot", "license": "CC0", "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en", "url": "https://commons.wikimedia.org/wiki/File:Shawl,_Varanasi,_Uttar_Pradesh,_India,_20th_century,_silk,_gold_thread_-_Textile_Museum_of_Canada_-_DSC00951.JPG", "usedFor": "Lilac Georgette Party Saree"},
     {"title": "Dhaka Sari Fabric 2", "author": "Bikrampur", "license": "CC0", "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en", "url": "https://commons.wikimedia.org/wiki/File:Dhaka_Sari_Fabric_2.jpg", "usedFor": "Our story section"},
     {"title": "Sari Border in red and gold", "author": "Lasta2020", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0", "url": "https://commons.wikimedia.org/wiki/File:Sari_Border_in_red_and_gold.jpg", "usedFor": "Banarasi Katan Saree"},
-    {"title": "Sari on mannequin for demo", "author": "Suyash.dwivedi", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0", "url": "https://commons.wikimedia.org/wiki/File:Sari_on_mannequin_for_demo.jpg", "usedFor": "Homepage hero"},
+    {"title": "Sari on mannequin for demo", "author": "Suyash.dwivedi", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0", "url": "https://commons.wikimedia.org/wiki/File:Sari_on_mannequin_for_demo.jpg", "usedFor": "Homepage slider"},
     {"title": "PURE SILK SAREE", "author": "Ovinfotech", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0", "url": "https://commons.wikimedia.org/wiki/File:PURE_SILK_SAREE.jpg", "usedFor": "Saree category"},
     {"title": "Dupattas", "author": "RAJIVVASUDEV", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0", "url": "https://commons.wikimedia.org/wiki/File:Dupattas.jpg", "usedFor": "Orna category"},
     {"title": "Dance costume (AM 2019.37.2-1)", "author": "Aaja Nachle", "license": "CC BY 4.0", "licenseUrl": "https://creativecommons.org/licenses/by/4.0", "url": "https://commons.wikimedia.org/wiki/File:Dance_costume_(AM_2019.37.2-1).jpg", "usedFor": "Blush Linen Two Piece Set"},
@@ -241,9 +287,9 @@ window.ASHFI = {
     {"title": "Ladies Kurtas (Tunics)", "author": "RAJIVVASUDEV", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0", "url": "https://commons.wikimedia.org/wiki/File:Ladies_Kurtas_(Tunics).jpg", "usedFor": "New Arrivals category"},
     {"title": "Foreigner at Cox&#x27;s Bazar beach (3994270544)", "author": "Piers Brown from London, United Kingdom", "license": "CC BY 2.0", "licenseUrl": "https://creativecommons.org/licenses/by/2.0", "url": "https://commons.wikimedia.org/wiki/File:Foreigner_at_Cox%27s_Bazar_beach_(3994270544).jpg", "usedFor": "Plum Printed Two Piece"},
     {"title": "Jamdani DSC 0500", "author": "Atudu", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0", "url": "https://commons.wikimedia.org/wiki/File:Jamdani_DSC_0500.JPG", "usedFor": "Jamdani-Style Cotton Saree"},
-    {"title": "Jamdani DSC 0503", "author": "Atudu", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0", "url": "https://commons.wikimedia.org/wiki/File:Jamdani_DSC_0503.JPG", "usedFor": "Jamdani-Style Cotton Saree"},
+    {"title": "Jamdani DSC 0503", "author": "Atudu", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0", "url": "https://commons.wikimedia.org/wiki/File:Jamdani_DSC_0503.JPG", "usedFor": "Jamdani-Style Cotton Saree, Homepage slider and video"},
     {"title": "Jamdani shop at BSCIC Jamdani palli, Narayanganj 4", "author": "Wasiul Bahar", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0", "url": "https://commons.wikimedia.org/wiki/File:Jamdani_shop_at_BSCIC_Jamdani_palli,_Narayanganj_4.jpg", "usedFor": "Jamdani-Style Cotton Saree"},
-    {"title": "Bandhani Dupatta (7034542551)", "author": "RubyGoes", "license": "CC BY 2.0", "licenseUrl": "https://creativecommons.org/licenses/by/2.0", "url": "https://commons.wikimedia.org/wiki/File:Bandhani_Dupatta_(7034542551).jpg", "usedFor": "Printed Chiffon Orna"},
+    {"title": "Bandhani Dupatta (7034542551)", "author": "RubyGoes", "license": "CC BY 2.0", "licenseUrl": "https://creativecommons.org/licenses/by/2.0", "url": "https://commons.wikimedia.org/wiki/File:Bandhani_Dupatta_(7034542551).jpg", "usedFor": "Printed Chiffon Orna, Homepage slider"},
     {"title": "Phoolkari punjabi work", "author": "Adbh266", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0", "url": "https://commons.wikimedia.org/wiki/File:Phoolkari_punjabi_work.jpg", "usedFor": "Navy Zari Three Piece"}
   ],
 

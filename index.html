@@ -24,6 +24,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="images/hero/slide-1-sm.webp" media="(max-width: 575px)" fetchpriority="high">
+  <link rel="preload" as="image" href="images/hero/slide-1-md.webp" media="(min-width: 576px) and (max-width: 991px)" fetchpriority="high">
+  <link rel="preload" as="image" href="images/hero/slide-1-lg.webp" media="(min-width: 992px)" fetchpriority="high">
   <link rel="stylesheet" href="css/style.css">
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Ashfi Collection", "url": "https://ashficollection.com/", "logo": "https://ashficollection.com/images/brand/logo-stacked.png"}</script>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Ashfi Collection", "url": "https://ashficollection.com/", "potentialAction": {"@type": "SearchAction", "target": {"@type": "EntryPoint", "urlTemplate": "https://ashficollection.com/shop.html?q={search_term_string}"}, "query-input": "required name=search_term_string"}}</script>
@@ -34,21 +37,28 @@
 <div id="site-header"></div>
 
 <main id="main">
-  <section class="hero" aria-labelledby="heroTitle">
-    <div class="container hero__grid">
-      <div class="hero__copy">
-        <span class="script">Elegance in Every Thread</span>
-        <h1 id="heroTitle">Discover Your Perfect Style</h1>
-        <p class="hero__lead">Explore our exclusive collection of elegant outfits, designed to make every moment special.</p>
-        <div class="hero__cta">
-          <a class="btn btn--primary" href="shop.html">Shop Now</a>
-          <a class="btn btn--outline" href="#categories">Explore Collection</a>
+  <section class="hero" id="heroSlider" aria-roledescription="carousel" aria-label="Featured collections">
+    <div class="hero__track" id="heroTrack">
+      <article class="hero-slide is-active is-live" data-align="left" data-fx="curtain" data-duration="9000" data-video="images/hero/slide-1-lg.mp4" data-video-sm="images/hero/slide-1-sm.mp4">
+        <div class="hero-slide__media">
+          <picture>
+            <source media="(max-width: 575px)" srcset="images/hero/slide-1-sm.webp" width="750" height="1100">
+            <source media="(max-width: 991px)" srcset="images/hero/slide-1-md.webp" width="1200" height="900">
+            <img src="images/hero/slide-1-lg.webp" alt="Close-up of handwoven jamdani fabric with a red motif" width="1920" height="1000" fetchpriority="high" decoding="async">
+          </picture>
         </div>
-        <p class="hero__bn" lang="bn">প্রতিটি পোশাকে আভিজাত্যের ছোঁয়া।</p>
-      </div>
-      <div class="hero__art">
-        <img src="images/hero.jpg" alt="Silk sarees with gold borders displayed on mannequins" width="700" height="840" fetchpriority="high">
-      </div>
+        <div class="container hero-slide__inner">
+          <div class="hero-slide__copy">
+            <p class="hero-slide__motto">Elegance in Every Thread</p>
+            <h1 class="hero-slide__title">Discover Your Perfect Style</h1>
+            <p class="hero-slide__desc">Explore our exclusive collection of elegant outfits, designed to make every moment special.</p>
+            <div class="hero-slide__cta">
+              <a class="btn btn--light" href="shop.html">Shop Now</a>
+              <a class="btn btn--ghost-light" href="#categories">Explore Collection</a>
+            </div>
+          </div>
+        </div>
+      </article>
     </div>
   </section>
 
@@ -159,6 +169,7 @@
 <script src="js/data.js"></script>
 <script src="js/store.js"></script>
 <script src="js/components.js"></script>
+<script src="js/hero.js"></script>
 <script src="js/home.js"></script>
 
 </body>
