@@ -24,9 +24,9 @@ Everything is in `images/brand/`. Logo lettering is converted to shapes, so no f
 
 | File | Use |
 | --- | --- |
-| `logo-horizontal.svg` / `.png` | Website header, invoices, light backgrounds |
+| `logo-horizontal.svg` / `.png` | Website header, invoices, light backgrounds (woman-in-saree badge beside the name) |
 | `logo-horizontal-light.svg` / `.png` | Footer and dark backgrounds |
-| `logo-stacked.svg` / `.png` (and `-light`) | Packaging, tags, square layouts |
+| `logo-stacked.svg` / `.png` (and `-light`) | Full logo with tagline: packaging, tags, square layouts |
 | `monogram.svg` / `.png` | Watermarks, stamps, stickers |
 | `facebook-profile.png` | Facebook profile picture, 1080×1080. Stays inside Facebook's circle crop |
 | `facebook-cover.png` | Facebook cover, 1640×924. Key content sits in the central 1640×624 band so it survives desktop cropping |
