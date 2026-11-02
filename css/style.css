@@ -888,3 +888,11 @@ a.stat:hover { border-color: var(--gold); }
   .hero-tab__label { display: none; }
   .hero__controls { bottom: 6px; }
 }
+
+/* dark header, for the cream and gold logo */
+.site-header { background: var(--burgundy-deep); border-bottom-color: rgba(197, 164, 109, .4); }
+.header__inner .icon-btn, .header__inner .nav-link { color: var(--cream); }
+.header__inner .icon-btn:hover { color: var(--white); background: rgba(255, 255, 255, .14); }
+.header__inner .nav-link:hover, .header__inner .nav-link[aria-current="page"] { color: #F2DEB8; }
+.header__inner .count-badge { background: var(--gold); color: var(--charcoal); }
+.header__inner :focus-visible { outline-color: var(--gold); }

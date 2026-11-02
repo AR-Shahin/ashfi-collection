@@ -375,7 +375,7 @@
       header.outerHTML =
         '<header class="site-header" id="siteHeader"><div class="container header__inner">' +
           '<button type="button" class="icon-btn header__menu" data-open-drawer aria-label="Open menu" aria-controls="mobileDrawer" aria-expanded="false">' + icon("menu", 24) + "</button>" +
-          '<a class="logo" href="index.html" aria-label="Ashfi Collection home"><img class="logo__img" src="images/brand/logo-horizontal.svg" alt="Ashfi Collection" width="562" height="176"></a>' +
+          '<a class="logo" href="index.html" aria-label="Ashfi Collection home"><img class="logo__img" src="graphic-design/logo-horizontal-light.svg" alt="Ashfi Collection" width="562" height="176"></a>' +
           '<nav class="primary-nav" aria-label="Primary"><ul>' +
             navLink("home", "index.html", "Home") + navLink("shop", "shop.html", "Shop") + navLink("new", "shop.html?filter=new", "New Arrivals") +
             '<li class="has-dropdown"><a class="nav-link" href="index.html#categories" aria-haspopup="true">Categories ' + icon("down", 14) + '</a><ul class="dropdown">' + catItems + "</ul></li>" +
