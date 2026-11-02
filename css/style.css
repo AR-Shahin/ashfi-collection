@@ -150,7 +150,7 @@ p { margin: 0 0 1em; }
 .social a:hover { background: var(--gold); color: var(--charcoal); }
 
 /* ------------------------------------------------------------------ hero slider */
-.hero { --dur: 7000ms; --px: 0; --py: 0; position: relative; overflow: hidden; background: var(--burgundy-deep); color: var(--cream); height: 620px; height: clamp(520px, calc(100svh - 190px), 680px); touch-action: pan-y; }
+.hero { --dur: 5000ms; --px: 0; --py: 0; position: relative; overflow: hidden; background: var(--burgundy-deep); color: var(--cream); height: 620px; height: clamp(520px, calc(100svh - 190px), 680px); touch-action: pan-y; }
 .hero__track { position: absolute; inset: 0; }
 .hero-slide { position: absolute; inset: 0; display: none; }
 .hero-slide.is-active { display: block; }
