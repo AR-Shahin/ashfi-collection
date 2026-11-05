@@ -896,3 +896,16 @@ a.stat:hover { border-color: var(--gold); }
 .header__inner .nav-link:hover, .header__inner .nav-link[aria-current="page"] { color: #F2DEB8; }
 .header__inner .count-badge { background: var(--gold); color: var(--charcoal); }
 .header__inner :focus-visible { outline-color: var(--gold); }
+
+/* ---------- Laravel additions ---------- */
+.pager { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 36px; flex-wrap: wrap; }
+.pager__info { color: var(--muted); font-size: .875rem; }
+.pager [aria-disabled="true"] { opacity: .45; pointer-events: none; }
+.form-msg:not([hidden]) { display: block; }
+.account__nav form { margin: 0; }
+.account__actions form, .addr-card footer form { display: inline; margin: 0; }
+.tab[aria-current="page"] { text-decoration: none; }
+.chip-btn { display: inline-flex; align-items: center; color: inherit; text-decoration: none; }
+.tab { display: inline-flex; align-items: center; color: inherit; text-decoration: none; }
+.shop-search a#shopQClear { display: grid; place-items: center; width: 36px; height: 36px; color: var(--muted); }
+.tag a { display: grid; place-items: center; width: 22px; height: 22px; background: var(--white); border-radius: 50%; color: var(--burgundy); }

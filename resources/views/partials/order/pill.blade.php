@@ -1,0 +1,1 @@
+<span class="pill pill--{{ $order->status }}">{{ ['placed' => 'Placed', 'confirmed' => 'Confirmed', 'shipped' => 'Shipped', 'delivered' => 'Delivered', 'cancelled' => 'Cancelled'][$order->status] ?? ucfirst($order->status) }}</span>
